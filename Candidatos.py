@@ -135,7 +135,11 @@ def conectar_planilha():
     scope = ["https://spreadsheets.google.com/feeds",
              "https://www.googleapis.com/auth/drive"]
 
-    creds = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json", scope)
+    # ESTA É A PARTE QUE CORRIGE O ERRO:
+    # Em vez de ler um arquivo, lemos o dicionário que você colou nos Secrets
+    creds_dict = st.secrets["gcp_service_account"]
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+
     client = gspread.authorize(creds)
     return client.open("Banco_Uorquin").sheet1
 
