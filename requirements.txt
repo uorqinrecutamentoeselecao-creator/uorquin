@@ -1,0 +1,6 @@
+streamlit
+gspread
+requests
+oauth2client
+reportlab
+user-agents
